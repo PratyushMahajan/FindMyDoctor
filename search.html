@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <a href="index.html" class="text-xl font-semibold text-gray-700">
+                        <img src="logo.png" alt="logo"></a>
+                </div>
+                <nav class="flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">Home</a>
+                    <a href="search.html" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">Search</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8">
+         <!-- Features Section -->
+         <div class="mt-8 p-8 bg-white shadow-lg rounded-lg">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <i class="fas fa-user-md fa-3x text-blue-500"></i>
+                    <h3 class="text-lg font-semibold mt-2">Qualified Doctors</h3>
+                    <p class="text-gray-600 mt-1">Choose from a variety of certified and experienced healthcare professionals.</p>
+                </div>
+                <div>
+                    <i class="fas fa-map-marker-alt fa-3x text-blue-500"></i>
+                    <h3 class="text-lg font-semibold mt-2">Location Search</h3>
+                    <p class="text-gray-600 mt-1">Find doctors in your vicinity for quick and easy access to healthcare.</p>
+                </div>
+                <div>
+                    <i class="fas fa-comments fa-3x text-blue-500"></i>
+                    <h3 class="text-lg font-semibold mt-2">24/7 Support</h3>
+                    <p class="text-gray-600 mt-1">Get assistance anytime with our round-the-clock customer service.</p>
+                </div>
+            </div>
+        </div> <br>
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="specialization">
+                    Specialization
+                </label>
+                <div class="relative">
+                    <select id="search" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option>General Physician</option>
+                        <option>Cardiologist</option>
+                        <option>Dermatologist</option>
+                        <option>Neurologist</option>
+                        <option>Orthopedic Surgeon</option>
+                        <option>Dentist</option>
+                        <option>Pediatrician</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="location">
+                    Location
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="area" type="text" placeholder="Enter location">
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" id="search_btn">
+                    Search
+                </button>
+            </div>
+        </div>
+
+
+        <!-- List of Doctors -->
+        <div class="space-y-4" id="searchSection">
+            
+        </div>
+        
+    </div>
+    <script>
+    $(document).ready(function(){
+        $("#search_btn").click(function(){
+            
+            var doctor_type = $("#search").val();
+            var doctor_area = $("#area").val();
+            
+            $.post("webservice.php", {search: doctor_type, area: doctor_area}, function(response){
+                $("#searchSection").html(response);
+            });
+            
+        });
+    });
+    
+    
+    </script>
+</body>
+</html>

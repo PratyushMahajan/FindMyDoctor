@@ -16,5 +16,3 @@ Find My Doctor is a user-friendly web application crafted to ease the often chal
 ### 4. Backend Powered by PHP and MySQL
 - **Secure and Efficient:** The backend, built on PHP and utilizing MySQL for data storage, guarantees a secure and efficient system for managing user data and doctor information.
 
-## Visit the Website:
-https://finddoctorsnearme.000webhostapp.com/
